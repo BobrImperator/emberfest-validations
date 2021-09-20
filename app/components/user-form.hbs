@@ -1,0 +1,58 @@
+<form
+  {{on "submit" this.onSubmit}}
+>
+  <div>
+    <label>
+      Name
+      <input
+        type="text"
+        {{on "change" (fn this.setUserField "name")}}
+      />
+    </label>
+
+    <ErrorMessage @messages={{array}} />
+  </div>
+
+  <div>
+    <label>
+      Age
+      <input
+        type="number"
+        {{on "change" (fn this.setUserField "age")}}
+      />
+    </label>
+
+    <ErrorMessage @messages={{array}} />
+  </div>
+  
+  <div>
+    {{#each this.user.pets as |pet index|}}
+      <div>
+        <label>
+          Pet {{index}}
+          <input type="text" {{on "change" (fn this.setPetField pet "name")}} /> 
+        </label>
+
+        <span>
+          <button
+            type="button"
+            {{on "click" (fn this.removePet pet)}}
+          >
+            X
+          </button>
+        </span>
+      </div>
+    {{/each}}
+
+    <button
+      type="button"
+      {{on "click" this.addPet}}
+    >
+      Add pet
+    </button>
+  </div>
+
+  <button type="submit">
+    Submit
+  </button>
+</form>
