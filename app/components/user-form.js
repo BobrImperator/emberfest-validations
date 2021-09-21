@@ -8,8 +8,11 @@ export default class UserFormComponent extends Component {
   user = this.store.createRecord('user');
 
   @action
-  onSubmit(event) {
+  async onSubmit(event) {
     event.preventDefault();
+
+    let val = await this.user.validations.validate();
+    console.log(val);
   }
 
   @action

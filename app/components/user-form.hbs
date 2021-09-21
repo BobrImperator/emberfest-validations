@@ -10,7 +10,7 @@
       />
     </label>
 
-    <ErrorMessage @messages={{array}} />
+    <ErrorMessage @messages={{this.user.validations.fieldErrors.name}} />
   </div>
 
   <div>
@@ -22,9 +22,9 @@
       />
     </label>
 
-    <ErrorMessage @messages={{array}} />
+    <ErrorMessage @messages={{this.user.validations.fieldErrors.age}} />
   </div>
-  
+    
   <div>
     {{#each this.user.pets as |pet index|}}
       <div>
@@ -41,6 +41,8 @@
             X
           </button>
         </span>
+
+        <ErrorMessage @messages={{pet.validations.fieldErrors.name}} />
       </div>
     {{/each}}
 
