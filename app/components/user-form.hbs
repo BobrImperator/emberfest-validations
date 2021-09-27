@@ -24,7 +24,16 @@
 
     <ErrorMessage @messages={{this.user.validations.fieldErrors.age}} />
   </div>
-    
+  
+  <div>
+    <label>
+      Is Allergic
+      <input type="checkbox" {{on "change" (fn this.setIsAllergic "isAllergic")}} />
+    </label>
+
+    <ErrorMessage @messages={{this.user.validations.fieldErrors.isAllergic}} />
+  </div>
+
   <div>
     {{#each this.user.pets as |pet index|}}
       <div>
@@ -41,8 +50,12 @@
             X
           </button>
         </span>
-
-        <ErrorMessage @messages={{pet.validations.fieldErrors.name}} />
+        <ErrorMessage
+          @messages={{yup-get
+            this.user.validations.fieldErrors
+            (concat "pets" "[" index "]" ".name")
+          }}
+        />
       </div>
     {{/each}}
 

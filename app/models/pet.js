@@ -1,4 +1,4 @@
-import Model, { attr } from '@ember-data/model';
+import Model, { attr, belongsTo } from '@ember-data/model';
 import { string } from 'yup';
 import YupValidations from 'emberfest-validations/validations/yup';
 
@@ -8,4 +8,6 @@ export default class PetModel extends Model {
   });
 
   @attr('string') name;
+
+  @belongsTo('user') owner;
 }

@@ -11,8 +11,9 @@ export default class UserFormComponent extends Component {
   async onSubmit(event) {
     event.preventDefault();
 
-    let val = await this.user.validations.validate();
-    console.log(val);
+    if (await this.user.validations.validate()) {
+      this.user.save();
+    }
   }
 
   @action
@@ -23,6 +24,11 @@ export default class UserFormComponent extends Component {
   @action
   removePet(pet) {
     pet.destroyRecord();
+  }
+
+  @action
+  setIsAllergic(key, event) {
+    this.user[key] = event.target.checked;
   }
 
   @action
