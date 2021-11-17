@@ -5,12 +5,16 @@
     <label>
       Name
       <input
+        data-test-user-name-input
         type="text"
         {{on "change" (fn this.setUserField "name")}}
       />
     </label>
 
-    <ErrorMessage @messages={{this.user.validations.fieldErrors.name}} />
+    <ErrorMessage
+      data-test-user-name-error
+      @messages={{this.user.validations.fieldErrors.name}}
+    />
   </div>
 
   <div>
@@ -28,7 +32,11 @@
   <div>
     <label>
       Is Allergic
-      <input type="checkbox" {{on "change" (fn this.setIsAllergic "isAllergic")}} />
+      <input
+        data-test-user-is-allergic-input
+        type="checkbox"
+        {{on "change" (fn this.setIsAllergic "isAllergic")}}
+      />
     </label>
 
     <ErrorMessage @messages={{this.user.validations.fieldErrors.isAllergic}} />
@@ -36,10 +44,14 @@
 
   <div>
     {{#each this.user.pets as |pet index|}}
-      <div>
+      <div data-test-pet={{index}} >
         <label>
           Pet {{index}}
-          <input type="text" {{on "change" (fn this.setPetField pet "name")}} /> 
+          <input
+            data-test-pet-name-input
+            type="text"
+            {{on "change" (fn this.setPetField pet "name")}}
+          /> 
         </label>
 
         <span>
@@ -51,6 +63,7 @@
           </button>
         </span>
         <ErrorMessage
+          data-test-pet-name-error
           @messages={{yup-get
             this.user.validations.fieldErrors
             (concat "pets" "[" index "]" ".name")
@@ -60,6 +73,7 @@
     {{/each}}
 
     <button
+      data-test-pet-add
       type="button"
       {{on "click" this.addPet}}
     >
@@ -67,7 +81,10 @@
     </button>
   </div>
 
-  <button type="submit">
+  <button
+    data-test-user-submit
+    type="submit"
+  >
     Submit
   </button>
 </form>
