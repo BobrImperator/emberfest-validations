@@ -64,10 +64,7 @@
         </span>
         <ErrorMessage
           data-test-pet-name-error
-          @messages={{yup-get
-            this.user.validations.fieldErrors
-            (concat "pets" "[" index "]" ".name")
-          }}
+          @messages={{pet.validations.fieldErrors.name}}
         />
       </div>
     {{/each}}
